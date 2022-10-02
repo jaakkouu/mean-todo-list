@@ -23,5 +23,12 @@ describe('TodoViewComponent', () => {
 
   it('should have title', () => {
     expect(fixture.nativeElement.querySelector('h1').textContent).toContain("TODO LIST");
-  })
+  });
+
+  it('should have list with items', () => {
+    const ol: HTMLElement = fixture.nativeElement.querySelector('ol');
+    const lis: NodeListOf<HTMLLIElement> = ol.querySelectorAll("li");
+    expect(ol).toHaveSize(1);
+    expect(lis).toHaveSize(3);
+  });
 });
