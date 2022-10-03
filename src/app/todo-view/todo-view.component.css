@@ -1,0 +1,28 @@
+ol {
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    list-style: none;
+    padding-left: 0;
+}
+
+ol > li {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 20px;
+}
+
+ol > li:nth-child(even), ol > li:hover {
+    background-color: #f5f5f5;
+}
+
+ol > li:first-child {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+ol > li:last-child {
+    border-top: 0;
+    border-bottom: 0;
+}
+
+
