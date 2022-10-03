@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { TodoViewComponent } from './todo-view/todo-view.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -9,7 +11,8 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        TodoViewComponent
       ],
     }).compileComponents();
   });
@@ -26,10 +29,9 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('mean-todo-list');
   });
 
-  it('should render title', () => {
+  it('should render have todo view', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('mean-todo-list app is running!');
+    const childComponent = fixture.debugElement.query(By.directive(TodoViewComponent)).componentInstance;
+    expect(childComponent).toHaveSize(1);
   });
 });
