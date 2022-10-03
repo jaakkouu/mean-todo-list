@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,6 +15,7 @@ describe('AppComponent', () => {
         AppComponent,
         TodoViewComponent
       ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   });
 
@@ -29,9 +31,9 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('mean-todo-list');
   });
 
-  it('should render have todo view', () => {
+  it('should render todo view', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const childComponent = fixture.debugElement.query(By.directive(TodoViewComponent)).componentInstance;
-    expect(childComponent).toHaveSize(1);
+    const childComponents = fixture.debugElement.queryAll(By.directive(TodoViewComponent));
+    expect(childComponents.length).toEqual(1);
   });
 });
