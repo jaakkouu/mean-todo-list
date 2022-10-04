@@ -6,15 +6,9 @@ import { AppComponent } from './app.component';
 import { TodoViewComponent } from './todo-view/todo-view.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TodoViewComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, TodoViewComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
