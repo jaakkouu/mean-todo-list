@@ -1,0 +1,22 @@
+{
+  "name": "mean-todo-list-server",
+  "version": "1.0.0",
+  "description": "server for mean todo list project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaakkouu/mean-todo-list.git"
+  },
+  "author": "Jaakko Uusitalo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaakkouu/mean-todo-list/issues"
+  },
+  "homepage": "https://github.com/jaakkouu/mean-todo-list#readme",
+  "devDependencies": {
+    "express": "^4.18.1"
+  }
+}
