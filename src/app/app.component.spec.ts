@@ -8,13 +8,8 @@ import { TodoViewComponent } from './todo-view/todo-view.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent,
-        TodoViewComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent, TodoViewComponent],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   });
@@ -33,7 +28,9 @@ describe('AppComponent', () => {
 
   it('should render todo view', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const childComponents = fixture.debugElement.queryAll(By.directive(TodoViewComponent));
+    const childComponents = fixture.debugElement.queryAll(
+      By.directive(TodoViewComponent)
+    );
     expect(childComponents.length).toEqual(1);
   });
 });
