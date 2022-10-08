@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TodoService } from '../services/todo/todo.service';
 import { TodoViewComponent } from './todo-view.component';
 
 describe('TodoViewComponent', () => {
@@ -8,11 +10,20 @@ describe('TodoViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TodoViewComponent]
+      declarations: [TodoViewComponent],
+      providers: [TodoService, HttpClient],
+      imports: [HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoViewComponent);
+    fixture.componentInstance.todos = [
+      { name: 'Todo 1' },
+      { name: 'Todo 2' },
+      { name: 'Todo 3' }
+    ];
+
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -26,10 +37,32 @@ describe('TodoViewComponent', () => {
     );
   });
 
-  it('should have list with items', () => {
+  it('should display list with items, when items found', async () => {
+    component.todos = [
+      { name: 'Todo 1' },
+      { name: 'Todo 2' },
+      { name: 'Todo 3' },
+      { name: 'Todo 4' }
+    ];
+    fixture.detectChanges();
+
     const ol: HTMLElement = fixture.nativeElement.querySelector('ol');
-    const lis: NodeListOf<HTMLLIElement> = ol.querySelectorAll('li');
+    const lis: NodeListOf<HTMLLIElement> =
+      fixture.nativeElement.querySelectorAll('li');
+
     expect(ol).toHaveSize(1);
-    expect(lis).toHaveSize(3);
+    expect(lis).toHaveSize(4);
+  });
+
+  it('should not display list, when no items found', () => {
+    component.todos = [];
+    fixture.detectChanges();
+
+    const noItemsTextElement: HTMLElement =
+      fixture.nativeElement.querySelector('p');
+
+    expect(noItemsTextElement.textContent).toContain(
+      'We did not find any todos'
+    );
   });
 });
