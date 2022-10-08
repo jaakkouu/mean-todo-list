@@ -1,5 +1,7 @@
 <h1>TODO LIST</h1>
 
-<ol>
+<ol *ngIf="todos != undefined && todos.length">
   <li *ngFor="let todo of todos">{{ todo.name }}</li>
 </ol>
+
+<p *ngIf="todos == undefined || !todos.length">We did not find any todos</p>
