@@ -1,16 +1,23 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const { connect, getDatabase } = require("./repository/conn");
 const port = 3000;
 
 app.use(cors());
 
+connect();
+
 app.get("/todos", (req, res) => {
-  const randomNumber = Math.floor(Math.random() * 10) + 1;
-  const data = Array.from(Array(randomNumber), (_, index) => ({
-    name: `Todo ${index + 1}`,
-  }));
-  res.send(data);
+  const todos = getDatabase()
+    .collection("todos")
+    .find()
+    .toArray((err, result) => {
+      if (err) throw err;
+      console.log(result);
+    });
+
+  res.send(todos);
 });
 
 app.listen(port, () => {
