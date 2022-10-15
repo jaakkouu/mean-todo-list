@@ -27,9 +27,9 @@ describe('TodoService', () => {
 
   it('knows how to fetch todos', async () => {
     const testData: Todo[] = [
-      { name: 'Todo 1' },
-      { name: 'Todo 2' },
-      { name: 'Todo 3' }
+      { id: 'id', name: 'Todo 1' },
+      { id: 'id', name: 'Todo 2' },
+      { id: 'id', name: 'Todo 3' }
     ];
 
     httpClient

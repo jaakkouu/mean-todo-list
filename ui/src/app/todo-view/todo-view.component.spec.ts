@@ -17,9 +17,9 @@ describe('TodoViewComponent', () => {
 
     fixture = TestBed.createComponent(TodoViewComponent);
     fixture.componentInstance.todos = [
-      { name: 'Todo 1' },
-      { name: 'Todo 2' },
-      { name: 'Todo 3' }
+      { id: 'id', name: 'Todo 1' },
+      { id: 'id', name: 'Todo 2' },
+      { id: 'id', name: 'Todo 3' }
     ];
 
     component = fixture.componentInstance;
@@ -39,10 +39,10 @@ describe('TodoViewComponent', () => {
 
   it('should display list with items, when items found', async () => {
     component.todos = [
-      { name: 'Todo 1' },
-      { name: 'Todo 2' },
-      { name: 'Todo 3' },
-      { name: 'Todo 4' }
+      { id: 'id', name: 'Todo 1' },
+      { id: 'id', name: 'Todo 2' },
+      { id: 'id', name: 'Todo 3' },
+      { id: 'id', name: 'Todo 4' }
     ];
     fixture.detectChanges();
 
