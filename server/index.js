@@ -9,15 +9,16 @@ app.use(cors());
 connect();
 
 app.get("/todos", (req, res) => {
-  const todos = getDatabase()
+  getDatabase()
     .collection("todos")
     .find()
     .toArray((err, result) => {
-      if (err) throw err;
-      console.log(result);
+      if (err) {
+        res.status(400).send("Error while fetching todos");
+      } else {
+        res.json(result);
+      }
     });
-
-  res.send(todos);
 });
 
 app.listen(port, () => {
