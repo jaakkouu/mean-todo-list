@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '../models/todo';
+import { APITodo, UITodo } from '../models/todo';
 import { TodoService } from '../services/todo/todo.service';
 
 @Component({
@@ -8,19 +8,27 @@ import { TodoService } from '../services/todo/todo.service';
   styleUrls: ['./todo-view.component.css']
 })
 export class TodoViewComponent implements OnInit {
-  todos: Todo[] = [];
+  todos: UITodo[] = [];
 
   constructor(private todoService: TodoService) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.loadTodos();
   }
 
   private async loadTodos() {
-    this.todoService.getTodos().subscribe(res => this.setTodos(res));
+    this.todoService.getTodos().subscribe({
+      next: this.setTodos,
+      error: console.error
+    });
   }
 
-  private setTodos(todos: Todo[]) {
-    this.todos = todos;
+  private setTodos(data: APITodo[]) {
+    this.todos = data.map(this.APITodoToUITodo);
   }
+
+  private APITodoToUITodo = (apiTodo: APITodo) => ({
+    ...apiTodo,
+    id: apiTodo._id
+  });
 }
