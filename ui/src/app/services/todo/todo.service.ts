@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Todo } from '../../models/todo';
+import { APITodo } from '../../models/todo';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ export class TodoService {
 
   constructor(private http: HttpClient) {}
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.BASE_URL}/todos`);
+  getTodos(): Observable<APITodo[]> {
+    return this.http.get<APITodo[]>(`${this.BASE_URL}/todos`);
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { Todo } from '../../models/todo';
+import { UITodo } from '../../models/todo';
 
 import {
   HttpClientTestingModule,
@@ -26,14 +26,14 @@ describe('TodoService', () => {
   });
 
   it('knows how to fetch todos', async () => {
-    const testData: Todo[] = [
+    const testData: UITodo[] = [
       { id: 'id', name: 'Todo 1' },
       { id: 'id', name: 'Todo 2' },
       { id: 'id', name: 'Todo 3' }
     ];
 
     httpClient
-      .get<Todo[]>('http://localhost:8080/todos')
+      .get<UITodo[]>('http://localhost:8080/todos')
       .subscribe(data => expect(data).toEqual(testData));
 
     const req = httpTestingController.expectOne('http://localhost:8080/todos');
