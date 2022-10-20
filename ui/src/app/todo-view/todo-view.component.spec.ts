@@ -29,6 +29,14 @@ describe('TodoViewComponent', () => {
     fixture.detectChanges();
   });
 
+  const typeToTodoInput = (text: string) => {
+    const input: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
+    input.value = text;
+    input.dispatchEvent(new KeyboardEvent('keyup'));
+    fixture.detectChanges();
+  };
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -69,5 +77,48 @@ describe('TodoViewComponent', () => {
     expect(noItemsTextElement.textContent).toContain(
       'We did not find any todos'
     );
+  });
+
+  it('should display input field field', () => {
+    const matFormField: HTMLElement =
+      fixture.nativeElement.querySelectorAll('mat-form-field');
+    expect(matFormField).toHaveSize(1);
+  });
+
+  it('creates todos, when enter is pressed', () => {
+    const text = 'testing if pressing enter submits';
+    typeToTodoInput(text);
+
+    const onTodoSubmitSpy = spyOn(component, 'onTodoSubmit');
+    const input: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
+    input.dispatchEvent(
+      new KeyboardEvent('keyup', {
+        key: 'Enter'
+      })
+    );
+
+    fixture.detectChanges();
+
+    expect(onTodoSubmitSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('clears todo input, when todo is created', () => {
+    typeToTodoInput('test');
+
+    const inputBeforeSubmit: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
+    inputBeforeSubmit.dispatchEvent(
+      new KeyboardEvent('keyup', {
+        key: 'Enter'
+      })
+    );
+
+    fixture.detectChanges();
+
+    const inputAfterSubmit: HTMLInputElement =
+      fixture.nativeElement.querySelector('input');
+
+    expect(inputAfterSubmit.value).toBe('');
   });
 });
