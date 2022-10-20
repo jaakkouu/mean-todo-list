@@ -35,7 +35,7 @@ describe('TodoViewComponent', () => {
 
   it('should have title', () => {
     expect(fixture.nativeElement.querySelector('h1').textContent).toContain(
-      'TODO LIST'
+      'MEAN TODO LIST'
     );
   });
 
