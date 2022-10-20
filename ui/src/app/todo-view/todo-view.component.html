@@ -1,7 +1,10 @@
 <h1>TODO LIST</h1>
 
-<ol *ngIf="todos != undefined && todos.length">
-  <li *ngFor="let todo of todos">{{ todo.name }}</li>
-</ol>
+<mat-list *ngIf="todos != undefined && todos.length" role="list">
+  <mat-list-item *ngFor="let todo of todos; last as last">
+    <p mat-line>{{ todo.name }}</p>
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>
 
 <p *ngIf="todos == undefined || !todos.length">We did not find any todos</p>
