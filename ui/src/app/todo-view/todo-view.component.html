@@ -8,3 +8,14 @@
 </mat-list>
 
 <p *ngIf="todos == undefined || !todos.length">We did not find any todos</p>
+
+<br />
+
+<mat-form-field class="full-width" appearance="fill">
+  <mat-label>Write todo</mat-label>
+  <input
+    matInput
+    (keyup.Enter)="onTodoSubmit($event)"
+    maxlength="256"
+    placeholder="Write something you want to accomplish..." />
+</mat-form-field>

@@ -42,4 +42,14 @@ describe('TodoService', () => {
 
     req.flush(testData);
   });
+
+  it('knows how to create todos', async () => {
+    httpClient
+      .post<string>('http://localhost:8080/todo', { todo: 'this is my todo' })
+      .subscribe();
+
+    const req = httpTestingController.expectOne('http://localhost:8080/todo');
+
+    expect(req.request.method).toEqual('POST');
+  });
 });

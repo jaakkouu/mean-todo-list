@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { TodoViewComponent } from './todo-view/todo-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, TodoViewComponent],
@@ -15,7 +17,9 @@ import { MatListModule } from '@angular/material/list';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

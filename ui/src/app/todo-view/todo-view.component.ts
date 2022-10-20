@@ -16,7 +16,19 @@ export class TodoViewComponent implements OnInit {
     this.loadTodos();
   }
 
-  private async loadTodos() {
+  onTodoSubmit(event: any) {
+    const { value } = event.target;
+    event.target.value = '';
+    this.addTodo(value);
+  }
+
+  private addTodo(todo: string) {
+    this.todoService.createTodo(todo).subscribe({
+      complete: () => this.loadTodos()
+    });
+  }
+
+  private async loadTodos(): Promise<void> {
     this.todoService.getTodos().subscribe({
       next: (todos: APITodo[]) => this.setTodos(todos),
       error: err => console.error(err)
