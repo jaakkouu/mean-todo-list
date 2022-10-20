@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TodoService } from '../services/todo/todo.service';
 import { TodoViewComponent } from './todo-view.component';
@@ -12,7 +13,8 @@ describe('TodoViewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [TodoViewComponent],
       providers: [TodoService, HttpClient],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TodoViewComponent);
@@ -46,12 +48,15 @@ describe('TodoViewComponent', () => {
     ];
     fixture.detectChanges();
 
-    const ol: HTMLElement = fixture.nativeElement.querySelector('ol');
-    const lis: NodeListOf<HTMLLIElement> =
-      fixture.nativeElement.querySelectorAll('li');
+    const list: HTMLElement = fixture.nativeElement.querySelector('mat-list');
+    const listItems: NodeListOf<HTMLLIElement> =
+      fixture.nativeElement.querySelectorAll('mat-list-item');
+    const dividers: NodeListOf<HTMLElement> =
+      fixture.nativeElement.querySelectorAll('mat-divider');
 
-    expect(ol).toHaveSize(1);
-    expect(lis).toHaveSize(4);
+    expect(list).toHaveSize(1);
+    expect(dividers).toHaveSize(3);
+    expect(listItems).toHaveSize(4);
   });
 
   it('should not display list, when no items found', () => {
