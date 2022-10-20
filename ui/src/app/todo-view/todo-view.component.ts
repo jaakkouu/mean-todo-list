@@ -18,8 +18,8 @@ export class TodoViewComponent implements OnInit {
 
   private async loadTodos() {
     this.todoService.getTodos().subscribe({
-      next: this.setTodos,
-      error: console.error
+      next: (todos: APITodo[]) => this.setTodos(todos),
+      error: err => console.error(err)
     });
   }
 
@@ -27,7 +27,7 @@ export class TodoViewComponent implements OnInit {
     this.todos = data.map(this.APITodoToUITodo);
   }
 
-  private APITodoToUITodo = (apiTodo: APITodo) => ({
+  private APITodoToUITodo = (apiTodo: APITodo): UITodo => ({
     ...apiTodo,
     id: apiTodo._id
   });
