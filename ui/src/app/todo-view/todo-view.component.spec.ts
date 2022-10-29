@@ -41,10 +41,12 @@ describe('TodoViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have title', () => {
-    expect(fixture.nativeElement.querySelector('h1').textContent).toContain(
-      'MEAN TODO LIST'
-    );
+  it('should display toolbar with title', () => {
+    const toolbar: HTMLElement =
+      fixture.nativeElement.querySelector('mat-toolbar');
+
+    expect(toolbar.textContent).toContain('MEAN TODO LIST');
+    expect(toolbar).toHaveSize(1);
   });
 
   it('should display list with items, when items found', async () => {
