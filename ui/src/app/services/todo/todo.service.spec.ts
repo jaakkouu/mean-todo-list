@@ -52,4 +52,12 @@ describe('TodoService', () => {
 
     expect(req.request.method).toEqual('POST');
   });
+
+  it('knows how to delete todos', async () => {
+    httpClient.delete<string>('http://localhost:8080/todo/1').subscribe();
+
+    const req = httpTestingController.expectOne('http://localhost:8080/todo/1');
+
+    expect(req.request.method).toEqual('DELETE');
+  });
 });

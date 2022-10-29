@@ -22,6 +22,12 @@ export class TodoViewComponent implements OnInit {
     this.addTodo(value);
   }
 
+  deleteTodo(todoId: string) {
+    this.todoService.deleteTodo(todoId).subscribe({
+      complete: () => this.loadTodos()
+    });
+  }
+
   private addTodo(todo: string) {
     this.todoService.createTodo(todo).subscribe({
       complete: () => this.loadTodos()
