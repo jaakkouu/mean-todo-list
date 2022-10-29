@@ -12,6 +12,7 @@
       mat-icon-button
       #deleteButton
       disabled="true"
+      (click)="deleteTodo(todo.id)"
       aria-label="Delete todo"
       role="button">
       <mat-icon>delete_forever</mat-icon>

@@ -18,4 +18,8 @@ export class TodoService {
   createTodo(todo: string): Observable<string> {
     return this.http.post<string>(`${this.BASE_URL}/todo`, { name: todo });
   }
+
+  deleteTodo(todoId: string): Observable<string> {
+    return this.http.delete<string>(`${this.BASE_URL}/todo/${todoId}`);
+  }
 }
