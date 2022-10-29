@@ -123,4 +123,26 @@ describe('TodoViewComponent', () => {
 
     expect(inputAfterSubmit.value).toBe('');
   });
+
+  it('shows delete button when list item is being hovered and hides it when not', () => {
+    const listItems: NodeListOf<HTMLLIElement> =
+      fixture.nativeElement.querySelectorAll('mat-list-item');
+    const lastListItem: HTMLLIElement = listItems.item(listItems.length - 1);
+
+    lastListItem.dispatchEvent(new Event('mouseenter'));
+    fixture.detectChanges();
+
+    const deleteButtonsOnMouseEnter: NodeListOf<HTMLButtonElement> =
+      lastListItem.querySelectorAll('button');
+
+    expect(deleteButtonsOnMouseEnter).toHaveSize(1);
+
+    lastListItem.dispatchEvent(new Event('mouseleave'));
+    fixture.detectChanges();
+
+    const deleteButtonsOnMouseLeave: NodeListOf<HTMLButtonElement> =
+      lastListItem.querySelectorAll('button');
+
+    expect(deleteButtonsOnMouseLeave).toHaveSize(1);
+  });
 });

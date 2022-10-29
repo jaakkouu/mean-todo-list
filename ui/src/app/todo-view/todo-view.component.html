@@ -3,8 +3,19 @@
 </mat-toolbar>
 
 <mat-list *ngIf="todos != undefined && todos.length" role="list">
-  <mat-list-item *ngFor="let todo of todos; last as last">
+  <mat-list-item
+    *ngFor="let todo of todos; last as last"
+    (mouseenter)="deleteButton.disabled = false"
+    (mouseleave)="deleteButton.disabled = true">
     <p mat-line>{{ todo.name }}</p>
+    <button
+      mat-icon-button
+      #deleteButton
+      disabled="true"
+      aria-label="Delete todo"
+      role="button">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
     <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
   </mat-list-item>
 </mat-list>
