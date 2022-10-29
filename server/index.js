@@ -4,6 +4,7 @@ const cors = require("cors");
 const { connect, getDatabase } = require("./repository/conn");
 const port = 3000;
 const bodyParser = require("body-parser");
+const { ObjectId } = require("mongodb");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +35,24 @@ app.post("/todo", (req, res) => {
     .insertOne(todo, function (err, result) {
       if (err) {
         res.status(400).send("Error inserting todo!");
+      } else {
+        res.status(204).send();
+      }
+    });
+});
+
+app.delete("/todo/:id", (req, res) => {
+  const { id } = req.params;
+
+  const todo = {
+    _id: ObjectId(id),
+  };
+
+  getDatabase()
+    .collection("todos")
+    .deleteOne(todo, function (err, result) {
+      if (err) {
+        res.status(400).send("Error deleting todo!");
       } else {
         res.status(204).send();
       }
